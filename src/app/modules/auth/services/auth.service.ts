@@ -30,6 +30,11 @@ export class AuthService {
     this.router.navigateByUrl('/signin');
   }
 
+  setSession(token: string) {
+    localStorage.setItem('jwt_token', token);
+    localStorage.setItem('jwt_expires_in', '0');
+  }
+
   isLoggedIn(): boolean {
     return moment().isBefore(this.expiresin);
   }

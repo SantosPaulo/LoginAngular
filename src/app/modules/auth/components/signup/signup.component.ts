@@ -5,11 +5,11 @@ import { Base } from '@app/classes/base';
 import { AlertService } from '@app/core/services/alert-service';
 
 @Component({
-  selector: 'app-signin',
-  templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.scss']
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.scss']
 })
-export class SigninComponent extends Base {
+export class SignupComponent extends Base {
 
   signupForm: FormGroup;
 
@@ -31,9 +31,18 @@ export class SigninComponent extends Base {
 
     this.subscriptions.add(
       this.authService
-          .signup(this.signupForm.value)
+          .signin(this.signupForm.value)
           .subscribe(res => {
-            console.log(res);
+
+            let message;
+
+            if (res.token) {
+              this.authService.setSession(res.token);
+              message = 'Signup succefully.';
+            } else {
+              message = res.message;
+            }
+            this.alertService.openSnackBar(message);
           })
     );
   }

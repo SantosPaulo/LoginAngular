@@ -4,7 +4,7 @@
     fxLayoutAlign="center center">
     <mat-card>
         <form fxLayout="column" [formGroup]="signupForm">
-            <h2>Signin</h2>
+            <h2>Signup</h2>
             <mat-form-field fxFlex="100">
                 <input matInput placeholder="email" formControlName="email">
                 <mat-error *ngIf="signupForm.get('email').hasError('required')">
@@ -27,7 +27,8 @@
                 color="primary"
                 (click)="submit()">
                 signout
-        </button>
-        <p><small><a routerLink="/auth/signup">signup</a></small></p>
-    </form>
-</mat-card>
+            </button>
+            <p><small><a routerLink="/auth/signin">signin</a></small></p>
+        </form>
+    </mat-card>
+</div>
