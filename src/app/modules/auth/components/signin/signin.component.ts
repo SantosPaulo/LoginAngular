@@ -32,8 +32,13 @@ export class SigninComponent extends Base {
     this.subscriptions.add(
       this.authService
           .signup(this.signupForm.value)
-          .subscribe(res => {
-            console.log(res);
+          .subscribe((res: any) => {
+
+            if (res.token) {
+              this.authService.setSession(res.token);
+            } else {
+              this.alertService.openSnackBar('Invalid credentials.');
+            }
           })
     );
   }

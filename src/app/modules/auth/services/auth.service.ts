@@ -33,10 +33,13 @@ export class AuthService {
   setSession(token: string) {
     localStorage.setItem('jwt_token', token);
     localStorage.setItem('jwt_expires_in', '0');
+    this.router.navigateByUrl('/dashboard');
   }
 
   isLoggedIn(): boolean {
-    return moment().isBefore(this.expiresin);
+    const token = localStorage.getItem('jwt_token');
+    return token ? true: false;
+    // return moment().isBefore(this.expiresin);
   }
 
   private _makeUrl(uri: string = ''): string {
