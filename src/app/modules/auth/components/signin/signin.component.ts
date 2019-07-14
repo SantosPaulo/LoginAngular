@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertServiceService } from '@app/core/services/alert-service.service';
 
 @Component({
   selector: 'app-signin',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SigninComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private readonly alertService: AlertServiceService
+  ) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  submit() {
+    this.alertService.openSnackBar('OK');
   }
-
 }

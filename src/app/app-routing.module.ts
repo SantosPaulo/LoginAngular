@@ -18,6 +18,7 @@ const routes: Routes = [
       preloadingStrategy: CustomPreloading
     })
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [CustomPreloading]
 })
 export class AppRoutingModule { }
