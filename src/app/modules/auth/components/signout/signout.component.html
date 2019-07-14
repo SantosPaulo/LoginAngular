@@ -1,1 +1,16 @@
-<p>signout works!</p>
+<mat-card fxLayout="column">
+    <h2>Signout</h2>
+    <mat-form-field fxFlex="100">
+        <input matInput placeholder="email">
+    </mat-form-field>
+    <mat-form-field fxFlex="100">
+        <input matInput placeholder="Password">
+    </mat-form-field>
+    <button mat-raised-button color="primary">
+        signout
+    </button>
+    <p>
+        <small><a routerLink="/auth/signin">signin</a></small>
+    </p>
+</mat-card>
+    
