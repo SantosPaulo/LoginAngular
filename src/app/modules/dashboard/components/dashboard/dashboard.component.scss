@@ -1,0 +1,40 @@
+:host {
+    mat-toolbar {
+        small {
+            cursor: pointer;
+
+            &:hover {
+                opacity: .5;
+            }
+        }
+    }
+
+    mat-sidenav-container {
+        position: absolute;
+        top: 5;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #eee;
+        height: calc(100% - 64px);
+    }
+
+    mat-sidenav, mat-sidenav-content {
+        padding: 20px;
+    }
+
+    mat-sidenav {
+        width: 200px;
+        text-align: center;
+    }
+
+    mat-list {
+        mat-list-item {
+            cursor: pointer;
+
+            &:hover {
+                opacity: .5;
+            }
+        }
+    }
+}

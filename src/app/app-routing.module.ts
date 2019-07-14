@@ -3,12 +3,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { CustomPreloading } from './classes/custom-preloader';
 import { NotFoundComponent } from './core/components/not-found/not-found.component';
 import { AuthGuardGuard } from './core/guards/auth-guard.guard';
+import { UnAuthGuardGuard } from './core/guards/un-auth-guard.guard';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'auth', pathMatch: 'full' },
   {
     path: 'auth',
     loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule),
-    data: { preload: true }
+    data: { preload: true },
+    canActivate: [ UnAuthGuardGuard ]
   },
   {
     path: 'dashboard',

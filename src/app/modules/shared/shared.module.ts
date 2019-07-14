@@ -5,6 +5,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav'
+import { MatListModule } from '@angular/material/list';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
@@ -18,8 +21,11 @@ import { AlertService } from '@app/core/services/alert-service';
     MatInputModule,
     MatButtonModule,
     MatSnackBarModule,
+    MatToolbarModule,
     FlexLayoutModule,
     MatFormFieldModule,
+    MatSidenavModule,
+    MatListModule,
     FormsModule,
     ReactiveFormsModule
   ],
@@ -28,8 +34,11 @@ import { AlertService } from '@app/core/services/alert-service';
     MatInputModule,
     MatButtonModule,
     MatSnackBarModule,
+    MatToolbarModule,
     FlexLayoutModule,
     MatFormFieldModule,
+    MatSidenavModule,
+    MatListModule,
     FormsModule,
     ReactiveFormsModule
   ],

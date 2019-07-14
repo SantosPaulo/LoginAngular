@@ -39,6 +39,9 @@ export class SigninComponent extends Base {
             } else {
               this.alertService.openSnackBar('Invalid credentials.');
             }
+          },
+          (error: Error) => {
+            this.alertService.openSnackBar('Invalid credentials');
           })
     );
   }

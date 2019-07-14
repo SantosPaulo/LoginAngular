@@ -1,1 +1,25 @@
-<p>dashboard works!</p>
+<mat-toolbar fxFlex="100" fxLayout="row" color="primary">
+    <div fxFlex="20">
+        <small (click)="drawer.toggle()">{{ user?.name }}</small>
+    </div>
+    <div fxFlex="95"></div>
+    <div fxFlex="5">
+        <small (click)="logout()">logout</small>
+    </div>
+</mat-toolbar>
+
+<mat-sidenav-container>
+    <mat-sidenav
+        #drawer
+        mode="side"
+        opened>
+        <mat-list role="list">
+            <mat-list-item role="listitem" routerLink="">Item 1</mat-list-item>
+            <mat-list-item role="listitem" routerLink="">Item 2</mat-list-item>
+            <mat-list-item role="listitem" routerLink="">Item 3</mat-list-item>
+        </mat-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <pre>{{ user | json }}</pre>
+    </mat-sidenav-content>  
+</mat-sidenav-container>
