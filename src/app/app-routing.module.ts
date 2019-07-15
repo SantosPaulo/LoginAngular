@@ -4,6 +4,7 @@ import { CustomPreloading } from './classes/custom-preloader';
 import { NotFoundComponent } from './core/components/not-found/not-found.component';
 import { AuthGuardGuard } from './core/guards/auth-guard.guard';
 import { UnAuthGuardGuard } from './core/guards/un-auth-guard.guard';
+import { AuthResolver } from './core/resolvers/auth-resolver';
 
 const routes: Routes = [
   { path: '', redirectTo: 'auth', pathMatch: 'full' },
@@ -17,7 +18,10 @@ const routes: Routes = [
     path: 'dashboard',
     loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule),
     data: { preload: true },
-    canActivate: [ AuthGuardGuard ]
+    canActivate: [ AuthGuardGuard ],
+    resolve: {
+      auth: AuthResolver
+    }
   },
   { path: '**', component: NotFoundComponent }
 ];

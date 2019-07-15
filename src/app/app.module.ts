@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { NotFoundComponent } from './core/components/not-found/not-found.component';
 import { AuthInterceptor } from './core/interceptors/auth-interceptor';
+import { AuthResolver } from './core/resolvers/auth-resolver';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { AuthInterceptor } from './core/interceptors/auth-interceptor';
     BrowserAnimationsModule
   ],
   providers: [
+    AuthResolver,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
