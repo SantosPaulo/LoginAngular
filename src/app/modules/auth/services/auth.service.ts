@@ -55,11 +55,13 @@ export class AuthService {
   isLoggedIn(): boolean {
     const token = localStorage.getItem('jwt_token');
     return token ? true: false;
-    // return moment().isBefore(this.expiresin);
+    // return moment().isBefore(this.expiresIn);
   }
 
   getUser(): Observable<User> {
-    return this.http.get<User>(this._makeUrl('/user'));
+    return this.http.get<User>(this._makeUrl('/user')).pipe(
+      shareReplay()
+    );
   }
 
   setUser(user: User): void {
@@ -70,8 +72,18 @@ export class AuthService {
     return `${env.api_url}/${uri}`;
   }
 
-  get expiresin(): string|null {
-    return localStorage.getItem('jwt_expires_in');
+  get token(): string|null {
+    if (!('jwt_token' in localStorage)) {
+      return null;
+    }
+    return localStorage.getItem('jwt_token');
+  }
+
+  get expiresIn(): number|null {
+    if (!('jwt_expires_in' in localStorage)) {
+      return null;
+    }
+    return +localStorage.getItem('jwt_expires_in');
   }
 
   get user(): User {
