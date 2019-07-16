@@ -37,7 +37,7 @@ export class SignupComponent extends Base {
             let message;
 
             if (res.token) {
-              this.authService.setSession(res.token);
+              this.authService.setSession(res.token, res.expires_in);
               message = 'Signup succefully.';
             } else {
               message = res.message;

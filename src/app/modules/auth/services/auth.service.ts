@@ -43,9 +43,9 @@ export class AuthService {
    * @param token
    * @todo Implement jwt_expires_in
    */
-  setSession(token: string) {
+  setSession(token: string, expires_in: number) {
     localStorage.setItem('jwt_token', token);
-    localStorage.setItem('jwt_expires_in', '0');
+    localStorage.setItem('jwt_expires_in', expires_in.toString());
     this.router.navigateByUrl('/dashboard');
   }
 
