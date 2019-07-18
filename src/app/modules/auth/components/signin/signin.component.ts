@@ -35,7 +35,7 @@ export class SigninComponent extends Base {
           .subscribe((res: any) => {
 
             if (res.token) {
-              this.authService.setSession(res.token);
+              this.authService.setSession(res.token, res.expires_in);
             } else {
               this.alertService.openSnackBar('Invalid credentials.');
             }
