@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { NotFoundComponent } from './core/components/not-found/not-found.component';
 import { AuthInterceptor } from './core/interceptors/auth-interceptor';
 import { AuthResolver } from './core/resolvers/auth-resolver';
+import { SessionExpiredInterceptor } from './core/interceptors/session-expired-interceptor';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,11 @@ import { AuthResolver } from './core/resolvers/auth-resolver';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SessionExpiredInterceptor,
       multi: true
     }
   ],
