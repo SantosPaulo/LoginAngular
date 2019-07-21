@@ -14,7 +14,7 @@ export class DashboardComponent implements OnInit {
   constructor(
     private readonly authService: AuthService
   ) {
-    this.authService.userCast.subscribe(
+    this.authService.userCast$.subscribe(
       user => this.user = user
     );
   }

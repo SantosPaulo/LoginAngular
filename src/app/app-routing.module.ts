@@ -19,9 +19,7 @@ const routes: Routes = [
     loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule),
     data: { preload: true },
     canActivate: [ AuthGuardGuard ],
-    resolve: {
-      auth: AuthResolver
-    }
+    resolve: { auth: AuthResolver }
   },
   { path: '**', component: NotFoundComponent }
 ];

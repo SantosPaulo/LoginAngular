@@ -8,26 +8,28 @@ import * as moment from 'moment';
 import { User } from '@app/core/models/user';
 import { shareReplay } from 'rxjs/operators';
 
+// window.moment = moment;
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
   private userObservable = new BehaviorSubject<User|any>(null);
-  userCast = this.userObservable.asObservable();
+  userCast$ = this.userObservable.asObservable();
 
   constructor(
     private readonly http: HttpClient,
     private readonly router: Router
   ) {}
 
-  signin(data: Credential): Observable<any> {
+  signup(data: Credential): Observable<any> {
     return this.http.post<Credential>(this._makeUrl('signup'), data).pipe(
       shareReplay()
     );
   }
 
-  signup(data: Credential) {
+  signin(data: Credential) {
     return this.http.post<Credential>(this._makeUrl('signin'), data).pipe(
       shareReplay()
     );
@@ -39,23 +41,18 @@ export class AuthService {
     this.router.navigateByUrl('/auth/signin');
   }
 
-  /**
-   * @param token
-   * @todo Implement jwt_expires_in
-   */
   setSession(token: string, expires_in: number) {
+
+    const expiresIn = moment().add(expires_in,'second');
+
     localStorage.setItem('jwt_token', token);
-    localStorage.setItem('jwt_expires_in', expires_in.toString());
+    localStorage.setItem('jwt_expires_in', JSON.stringify(expiresIn.valueOf()));
+
     this.router.navigateByUrl('/dashboard');
   }
 
-  /**
-   * @todo Implement expiration token.
-   */
   isLoggedIn(): boolean {
-    const token = localStorage.getItem('jwt_token');
-    return token ? true: false;
-    // return moment().isBefore(this.expiresIn);
+    return moment().isBefore(this.expiresIn);
   }
 
   getUser(): Observable<User> {
@@ -73,17 +70,15 @@ export class AuthService {
   }
 
   get token(): string|null {
-    if (!('jwt_token' in localStorage)) {
-      return null;
-    }
     return localStorage.getItem('jwt_token');
   }
 
-  get expiresIn(): number|null {
-    if (!('jwt_expires_in' in localStorage)) {
-      return null;
-    }
-    return +localStorage.getItem('jwt_expires_in');
+  get expiresIn(): any {
+
+    const expiration = localStorage.getItem("jwt_expires_in");
+    const expiresIn = JSON.parse(expiration);
+    
+    return moment(expiresIn);
   }
 
   get user(): User {

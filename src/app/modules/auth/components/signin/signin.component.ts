@@ -31,8 +31,10 @@ export class SigninComponent extends Base {
 
     this.subscriptions.add(
       this.authService
-          .signup(this.signupForm.value)
+          .signin(this.signupForm.value)
           .subscribe((res: any) => {
+
+            console.warn( res );
 
             if (res.token) {
               this.authService.setSession(res.token, res.expires_in);

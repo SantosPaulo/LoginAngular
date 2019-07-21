@@ -31,7 +31,7 @@ export class SignupComponent extends Base {
 
     this.subscriptions.add(
       this.authService
-          .signin(this.signupForm.value)
+          .signup(this.signupForm.value)
           .subscribe(res => {
 
             let message;
