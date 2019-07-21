@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { AuthService } from '../../services/auth.service';
 import { Base } from '@app/classes/base';
 import { AlertService } from '@app/core/services/alert-service';
+import { Jwt } from '@app/core/models/jwt';
 
 @Component({
   selector: 'app-signin',
@@ -32,12 +33,10 @@ export class SigninComponent extends Base {
     this.subscriptions.add(
       this.authService
           .signin(this.signupForm.value)
-          .subscribe((res: any) => {
+          .subscribe((jwt: Jwt) => {
 
-            console.warn( res );
-
-            if (res.token) {
-              this.authService.setSession(res.token, res.expires_in);
+            if (jwt) {
+              this.authService.setSession(jwt);
             } else {
               this.alertService.openSnackBar('Invalid credentials.');
             }

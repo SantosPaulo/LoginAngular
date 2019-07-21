@@ -7,8 +7,7 @@ import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { User } from '@app/core/models/user';
 import { shareReplay } from 'rxjs/operators';
-
-// window.moment = moment;
+import { Jwt } from '@app/core/models/jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -23,14 +22,14 @@ export class AuthService {
     private readonly router: Router
   ) {}
 
-  signup(data: Credential): Observable<any> {
-    return this.http.post<Credential>(this._makeUrl('signup'), data).pipe(
+  signup(data: Credential): Observable<Jwt> {
+    return this.http.post<Jwt>(this._makeUrl('signup'), data).pipe(
       shareReplay()
     );
   }
 
-  signin(data: Credential) {
-    return this.http.post<Credential>(this._makeUrl('signin'), data).pipe(
+  signin(data: Credential): Observable<Jwt> {
+    return this.http.post<Jwt>(this._makeUrl('signin'), data).pipe(
       shareReplay()
     );
   }
@@ -41,12 +40,17 @@ export class AuthService {
     this.router.navigateByUrl('/auth/signin');
   }
 
-  setSession(token: string, expires_in: number) {
+  setSession(jwt: Jwt): void {
 
-    const expiresIn = moment().add(expires_in,'second');
+    const expiresIn = moment().add(jwt.token.expiresIn,'second');
 
-    localStorage.setItem('jwt_token', token);
+    localStorage.setItem('jwt_token', jwt.token.token);
     localStorage.setItem('jwt_expires_in', JSON.stringify(expiresIn.valueOf()));
+
+    const renewalExpiresIn = moment().add(jwt.renewalToken.renewalExpiresIn,'second');
+
+    localStorage.setItem('jwt_renewal_token', jwt.renewalToken.renewalToken);
+    localStorage.setItem('jwt_renewal_expires_in', JSON.stringify(renewalExpiresIn.valueOf()));
 
     this.router.navigateByUrl('/dashboard');
   }

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { AuthService } from '../../services/auth.service';
 import { Base } from '@app/classes/base';
 import { AlertService } from '@app/core/services/alert-service';
+import { Jwt } from '@app/core/models/jwt';
 
 @Component({
   selector: 'app-signup',
@@ -32,15 +33,15 @@ export class SignupComponent extends Base {
     this.subscriptions.add(
       this.authService
           .signup(this.signupForm.value)
-          .subscribe(res => {
+          .subscribe((jwt: Jwt) => {
 
             let message;
 
-            if (res.token) {
-              this.authService.setSession(res.token, res.expires_in);
+            if (jwt) {
+              this.authService.setSession(jwt);
               message = 'Signup succefully.';
             } else {
-              message = res.message;
+              message = jwt.message;
             }
             this.alertService.openSnackBar(message);
           })
