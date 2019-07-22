@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav'
 import { MatListModule } from '@angular/material/list';
+import { MatDialogModule } from '@angular/material/dialog';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
@@ -22,6 +23,7 @@ import { AlertService } from '@app/core/services/alert-service';
     MatButtonModule,
     MatSnackBarModule,
     MatToolbarModule,
+    MatDialogModule,
     FlexLayoutModule,
     MatFormFieldModule,
     MatSidenavModule,
@@ -35,6 +37,7 @@ import { AlertService } from '@app/core/services/alert-service';
     MatButtonModule,
     MatSnackBarModule,
     MatToolbarModule,
+    MatDialogModule,
     FlexLayoutModule,
     MatFormFieldModule,
     MatSidenavModule,
@@ -44,6 +47,7 @@ import { AlertService } from '@app/core/services/alert-service';
   ],
   providers: [
     AlertService
-  ]
+  ],
+  entryComponents: []
 })
 export class SharedModule { }

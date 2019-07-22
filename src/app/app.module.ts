@@ -9,17 +9,25 @@ import { NotFoundComponent } from './core/components/not-found/not-found.compone
 import { AuthInterceptor } from './core/interceptors/auth-interceptor';
 import { AuthResolver } from './core/resolvers/auth-resolver';
 import { SessionExpiredInterceptor } from './core/interceptors/session-expired-interceptor';
+import { MatDialogModule } from '@angular/material/dialog';
+import { SessionExpiredComponent } from './core/components/session-expired/session-expired.component';
+import { MatButtonModule } from '@angular/material/button';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    SessionExpiredComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatDialogModule,
+    MatButtonModule,
+    FlexLayoutModule
   ],
   providers: [
     AuthResolver,
@@ -34,6 +42,9 @@ import { SessionExpiredInterceptor } from './core/interceptors/session-expired-i
       multi: true
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [ AppComponent ],
+  entryComponents: [
+    SessionExpiredComponent
+  ]
 })
 export class AppModule { }
