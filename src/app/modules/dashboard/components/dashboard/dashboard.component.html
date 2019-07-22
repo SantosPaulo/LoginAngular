@@ -14,12 +14,13 @@
         mode="side"
         opened>
         <mat-list role="list">
-            <mat-list-item role="listitem" routerLink="">Item 1</mat-list-item>
-            <mat-list-item role="listitem" routerLink="">Item 2</mat-list-item>
-            <mat-list-item role="listitem" routerLink="">Item 3</mat-list-item>
+            <mat-list-item role="listitem" routerLink="/dashboard/page-one">Item 1</mat-list-item>
+            <mat-list-item role="listitem" routerLink="/dashboard/page-two">Item 2</mat-list-item>
+            <mat-list-item role="listitem" routerLink="/dashboard/page-three">Item 3</mat-list-item>
         </mat-list>
     </mat-sidenav>
     <mat-sidenav-content class="mat-app-background">
         <h1>Dashboard</h1>
+        <router-outlet></router-outlet>
     </mat-sidenav-content>  
 </mat-sidenav-container>

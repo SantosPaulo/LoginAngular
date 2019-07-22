@@ -8,26 +8,20 @@ import { AppComponent } from './app.component';
 import { NotFoundComponent } from './core/components/not-found/not-found.component';
 import { AuthInterceptor } from './core/interceptors/auth-interceptor';
 import { AuthResolver } from './core/resolvers/auth-resolver';
+import { SessionExpiredModule } from './modules/session-expired/session-expired.module';
 import { SessionExpiredInterceptor } from './core/interceptors/session-expired-interceptor';
-import { MatDialogModule } from '@angular/material/dialog';
-import { SessionExpiredComponent } from './core/components/session-expired/session-expired.component';
-import { MatButtonModule } from '@angular/material/button';
-import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NotFoundComponent,
-    SessionExpiredComponent
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatDialogModule,
-    MatButtonModule,
-    FlexLayoutModule
+    SessionExpiredModule
   ],
   providers: [
     AuthResolver,
@@ -42,9 +36,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
       multi: true
     }
   ],
-  bootstrap: [ AppComponent ],
-  entryComponents: [
-    SessionExpiredComponent
-  ]
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }
