@@ -6,7 +6,7 @@ import { environment as env } from '@env/environment';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { User } from '@app/core/models/user';
-import { shareReplay } from 'rxjs/operators';
+import { shareReplay, tap } from 'rxjs/operators';
 import { Jwt } from '@app/core/models/jwt';
 import { MatDialog } from '@angular/material/dialog';
 import { SessionExpiredComponent } from '@app/modules/session-expired/components/session-expired/session-expired.component';
@@ -39,6 +39,12 @@ export class AuthService extends Base {
 
   signin(data: Credential): Observable<Jwt> {
     return this.http.post<Jwt>(this._makeUrl('signin'), data).pipe(
+      shareReplay()
+    );
+  }
+
+  renewal(): Observable<Jwt> {
+    return this.http.post<Jwt>(this._makeUrl('renew'), null).pipe(
       shareReplay()
     );
   }
@@ -86,6 +92,9 @@ export class AuthService extends Base {
       this.interval$
           .pipe(shareReplay())
           .subscribe(() => {
+
+            this.renewal().subscribe(jwt => this.setSession(jwt));
+
             if (!this.isLoggedIn() && this.token !== null) {
               this.logout();
               this._openDialog();

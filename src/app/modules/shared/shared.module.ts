@@ -9,6 +9,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav'
 import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
@@ -24,6 +25,7 @@ import { AlertService } from '@app/core/services/alert-service';
     MatSnackBarModule,
     MatToolbarModule,
     MatDialogModule,
+    MatMenuModule,
     FlexLayoutModule,
     MatFormFieldModule,
     MatSidenavModule,
@@ -38,6 +40,7 @@ import { AlertService } from '@app/core/services/alert-service';
     MatSnackBarModule,
     MatToolbarModule,
     MatDialogModule,
+    MatMenuModule,
     FlexLayoutModule,
     MatFormFieldModule,
     MatSidenavModule,

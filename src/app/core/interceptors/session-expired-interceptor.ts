@@ -28,12 +28,6 @@ export class SessionExpiredInterceptor implements HttpInterceptor {
                            }
                        )
                    );
-
-        /* if (!this.authService.isLoggedIn()) {
-            this._openDialog();
-            this.authService.logout();
-        }
-        return next.handle(req); */
     }
 
     private _openDialog(): void {

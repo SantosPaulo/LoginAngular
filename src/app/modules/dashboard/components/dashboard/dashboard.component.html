@@ -4,7 +4,10 @@
     </div>
     <div fxFlex="95"></div>
     <div fxFlex="5">
-        <small (click)="logout()">logout</small>
+        <i class="material-icons" [matMenuTriggerFor]="menu">exit_to_app</i>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="logout()">Log out</button>
+        </mat-menu>
     </div>
 </mat-toolbar>
 
