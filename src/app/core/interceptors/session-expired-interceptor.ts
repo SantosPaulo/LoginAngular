@@ -1,8 +1,9 @@
-import { HttpInterceptor, HttpRequest, HttpHandler } from '@angular/common/http';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from '@app/modules/auth/services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { SessionExpiredComponent } from '@app/modules/session-expired/components/session-expired/session-expired.component';
+import { tap } from 'rxjs/operators';
 
 export class SessionExpiredInterceptor implements HttpInterceptor {
 
@@ -13,11 +14,26 @@ export class SessionExpiredInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<any> {
 
-        if (!this.authService.isLoggedIn()) {
-            // this._openDialog();
+        return next.handle(req)
+                   .pipe(
+                       tap(
+                           () => {},
+                           err => {
+                                if (err instanceof HttpErrorResponse) {
+                                    if (err.status === 401) {
+                                        this._openDialog();
+                                        this.authService.logout();
+                                    }
+                                }
+                           }
+                       )
+                   );
+
+        /* if (!this.authService.isLoggedIn()) {
+            this._openDialog();
             this.authService.logout();
         }
-        return next.handle(req);
+        return next.handle(req); */
     }
 
     private _openDialog(): void {
