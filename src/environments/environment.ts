@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  api_url: 'http://localhost:8989/api/v1'
+  api_url: 'http://localhost:8989/api/v1',
+  password_strength: 6
 };
 
 /*

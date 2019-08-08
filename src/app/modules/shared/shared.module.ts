@@ -14,6 +14,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AlertService } from '@app/core/services/alert-service';
+import { FileUploadService } from '@app/core/services/file-upload.service';
 
 @NgModule({
   declarations: [],
@@ -49,7 +50,8 @@ import { AlertService } from '@app/core/services/alert-service';
     ReactiveFormsModule
   ],
   providers: [
-    AlertService
+    AlertService,
+    FileUploadService
   ],
   entryComponents: []
 })

@@ -88,6 +88,11 @@ export class AuthService extends Base {
   }
 
   private _initTokenChecker(): void {
+
+    /* if (!this.isLoggedIn()) {
+      return;
+    } */
+
     this.subscriptions.add(
       this.interval$
           .pipe(shareReplay())

@@ -11,6 +11,10 @@
             cursor: pointer;
             margin-top: 10px;
         }
+        // documented
+        .my-avatar .avatar-content {
+            cursor: pointer !important;
+        }
     }
 
     mat-sidenav-container {

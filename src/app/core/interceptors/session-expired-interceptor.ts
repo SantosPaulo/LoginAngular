@@ -20,7 +20,7 @@ export class SessionExpiredInterceptor implements HttpInterceptor {
                            () => {},
                            err => {
                                 if (err instanceof HttpErrorResponse) {
-                                    if (err.status === 401) {
+                                    if (err.status === 423) {
                                         this._openDialog();
                                         this.authService.logout();
                                     }

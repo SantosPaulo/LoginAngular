@@ -2,7 +2,13 @@
     <div fxFlex="20">
         <small (click)="drawer.toggle()">{{ user?.name }}</small>
     </div>
-    <div fxFlex="95"></div>
+    <div fxFlex="90"></div>
+    <div fxFlex="5">
+        <ngx-avatar
+            [gravatarId]="user?.gravatar"
+            [matMenuTriggerFor]="menu">
+        </ngx-avatar>
+    </div>
     <div fxFlex="5">
         <i class="material-icons" [matMenuTriggerFor]="menu">exit_to_app</i>
         <mat-menu #menu="matMenu">
@@ -24,6 +30,9 @@
     </mat-sidenav>
     <mat-sidenav-content class="mat-app-background">
         <h1>Dashboard</h1>
-        <router-outlet></router-outlet>
-    </mat-sidenav-content>  
+        <main [@routeAnimations]="prepareRoute(outlet)">
+            <router-outlet #outlet="outlet"></router-outlet>
+            <router-outlet name="secondary"></router-outlet>
+        </main>
+    </mat-sidenav-content>
 </mat-sidenav-container>

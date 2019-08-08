@@ -8,6 +8,8 @@ import { PageOneComponent } from './components/page-one/page-one.component';
 import { PageTwoComponent } from './components/page-two/page-two.component';
 import { PageThreeComponent } from './components/page-three/page-three.component';
 
+import { AvatarModule } from 'ngx-avatar';
+
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -18,7 +20,8 @@ import { PageThreeComponent } from './components/page-three/page-three.component
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    SharedModule
+    SharedModule,
+    AvatarModule
   ],
   exports: [
     DashboardComponent

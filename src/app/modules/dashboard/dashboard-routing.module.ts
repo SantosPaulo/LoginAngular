@@ -10,9 +10,9 @@ const routes: Routes = [
     path: '',
     component: DashboardComponent,
     children: [
-      { path: 'page-one', component: PageOneComponent },
-      { path: 'page-two', component: PageTwoComponent },
-      { path: 'page-three', component: PageThreeComponent }
+      { path: 'page-one', component: PageOneComponent, data: { animation: 'in' } },
+      { path: 'page-two', component: PageTwoComponent, data: { animation: 'in' } },
+      { path: 'page-three', component: PageThreeComponent, data: { animation: 'in' } }
     ]
   },
 ];
