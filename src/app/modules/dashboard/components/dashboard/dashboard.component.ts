@@ -17,7 +17,7 @@ export class DashboardComponent extends Base implements OnInit {
 
   user: User;
   form: FormGroup;
-
+  
   constructor(
     private readonly authService: AuthService,
     private readonly fb: FormBuilder,
