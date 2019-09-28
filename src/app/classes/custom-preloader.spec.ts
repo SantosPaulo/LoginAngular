@@ -1,7 +1,7 @@
-import { CustomPreloader } from './custom-preloader';
+import { CustomPreloading } from './custom-preloader';
 
 describe('CustomPreloader', () => {
   it('should create an instance', () => {
-    expect(new CustomPreloader()).toBeTruthy();
+    expect(new CustomPreloading()).toBeTruthy();
   });
 });
