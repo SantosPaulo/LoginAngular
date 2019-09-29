@@ -1,5 +1,4 @@
-import { async, ComponentFixture, TestBed, tick, inject, fakeAsync } from '@angular/core/testing';
-
+import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { SigninComponent } from './signin.component';
 import { SharedModule } from '@app/modules/shared/shared.module';
@@ -16,7 +15,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 class SignupComponent {}
 
 const routes: Routes = [
-  { path: 'auth/signin', component: SignupComponent },
+  { path: 'auth/signin', component: SigninComponent },
   { path: 'auth/signup', component: SignupComponent }
 ];
 

@@ -41,16 +41,15 @@ export class SigninComponent extends Base {
               this.alertService.openSnackBar('Invalid credentials.');
             }
           },
-          (error: Error) => {
-            this.alertService.openSnackBar('Invalid credentials');
-          })
+          () => this.alertService.openSnackBar('Invalid credentials')
+        )
     );
   }
 
   private _initForm(): void {
     this.signupForm = this.fb.group({
-      email: [],
-      password: []
+      email: new FormControl('', [ Validators.required, Validators.email ]),
+      password: new FormControl('', [ Validators.required, Validators.minLength(6) ])
     });
   }
 }
