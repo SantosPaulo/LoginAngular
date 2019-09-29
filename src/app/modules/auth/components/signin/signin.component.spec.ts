@@ -30,6 +30,8 @@ describe('SigninComponent', () => {
   let anchor: HTMLElement;
   let emailInput: HTMLInputElement;
   let passwordInput: HTMLInputElement;
+  let location: Location;
+  let router: Router;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -47,7 +49,7 @@ describe('SigninComponent', () => {
     .compileComponents();
   }));
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     fixture = TestBed.createComponent(SigninComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -57,7 +59,10 @@ describe('SigninComponent', () => {
     passwordInput = nativeElement.querySelector('input[type="password"');
     button = nativeElement.querySelector('button[type="button"');
     anchor = nativeElement.querySelector('p small a');
-  }));
+    location = TestBed.get(Location);
+    router = TestBed.get(Router);
+    router.initialNavigation();
+  });
 
   afterEach(() => {
     fixture = null;
@@ -68,6 +73,8 @@ describe('SigninComponent', () => {
     passwordInput = null;
     button = null;
     anchor = null;
+    location = null;
+    router = null;
   });
 
   it('should create', () => {
@@ -99,14 +106,12 @@ describe('SigninComponent', () => {
     expect(anchor.getAttribute('routerLink')).toBe('/auth/signup');
   });
 
-  it('should navigate to signup page', () => {
-    inject([ Router, Location ], fakeAsync((router: Router, location: Location) => {
-      router.initialNavigation();
-      tick();
-      expect(location.path()).toBe('/auth/signin');
-      anchor.dispatchEvent(new Event('click'));
-      tick();
-      expect(location.path()).toBe('/auth/signup');
-    }))
-  });
+  it('should navigate to signup page', fakeAsync(() => {
+    router.navigate(['/auth/signin']);
+    tick();
+    expect(location.path()).toBe('/auth/signin');
+    anchor.click()
+    tick();
+    expect(location.path()).toBe('/auth/signup');
+  }));
 });
