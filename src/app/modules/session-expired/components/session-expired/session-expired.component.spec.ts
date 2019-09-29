@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SessionExpiredComponent } from './session-expired.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { SharedModule } from '@app/modules/shared/shared.module';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular//core';
 
 describe('SessionExpiredComponent', () => {
   let component: SessionExpiredComponent;

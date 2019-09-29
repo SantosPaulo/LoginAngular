@@ -6,6 +6,11 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { MatDialogModule } from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -19,7 +24,13 @@ describe('DashboardComponent', () => {
         MatMenuModule,
         MatToolbarModule,
         MatListModule,
-        MatSidenavModule
+        MatSidenavModule,
+        RouterTestingModule,
+        HttpClientModule,
+        MatDialogModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule
       ]
     })
     .compileComponents();

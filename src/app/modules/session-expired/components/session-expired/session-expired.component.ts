@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {  MatDialogRef } from '@angular/material/dialog';
+import {  MatDialogRef, MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-session-expired',
@@ -9,10 +9,12 @@ import {  MatDialogRef } from '@angular/material/dialog';
 export class SessionExpiredComponent {
 
   constructor(
-    private readonly matDialogRef: MatDialogRef<Component>
+    // private readonly matDialogRef: MatDialogRef<Component>
+    private readonly matDialog: MatDialog
   ) {}
 
   dismiss(): void {
-    this.matDialogRef.close();
+    // this.matDialogRef.close();
+    this.matDialog.closeAll();
   }
 }
