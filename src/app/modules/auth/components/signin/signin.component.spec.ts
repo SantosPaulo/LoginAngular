@@ -2,22 +2,11 @@ import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core
 import { HttpClientModule } from '@angular/common/http';
 import { SigninComponent } from './signin.component';
 import { SharedModule } from '@app/modules/shared/shared.module';
-import { Routes, Router } from '@angular/router';
-import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Location } from '@angular/common';
+import { Location, DOCUMENT } from '@angular/common';
 import { RouterTestingModule } from '@angular/router/testing';
-
-@Component({
-  selector: '',
-  template: ''
-})
-class SignupComponent {}
-
-const routes: Routes = [
-  { path: 'auth/signin', component: SigninComponent },
-  { path: 'auth/signup', component: SignupComponent }
-];
+import { SignupComponent, DashboardComponent } from './signin.mock';
 
 describe('SigninComponent', () => {
 
@@ -31,18 +20,24 @@ describe('SigninComponent', () => {
   let passwordInput: HTMLInputElement;
   let location: Location;
   let router: Router;
+  let document: Document;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         SigninComponent,
-        SignupComponent
+        SignupComponent,
+        DashboardComponent
       ],
       imports: [
         BrowserAnimationsModule,
         HttpClientModule,
         SharedModule,
-        RouterTestingModule.withRoutes(routes)
+        RouterTestingModule.withRoutes([
+          { path: 'auth/signin', component: SigninComponent },
+          { path: 'auth/signup', component: SignupComponent },
+          { path: 'dashboard', component: DashboardComponent }
+        ])
       ],
     })
     .compileComponents();
@@ -61,6 +56,7 @@ describe('SigninComponent', () => {
     location = TestBed.get(Location);
     router = TestBed.get(Router);
     router.initialNavigation();
+    document = TestBed.get(DOCUMENT);
   });
 
   afterEach(() => {
@@ -112,5 +108,33 @@ describe('SigninComponent', () => {
     anchor.click()
     tick();
     expect(location.path()).toBe('/auth/signup');
+  }));
+
+  it('validate email validity', () => {
+    const email = component.signupForm.get('email');
+    expect(email.valid).toBeFalsy();
+    expect(email.errors['required']).toBeTruthy();
+  });
+
+  it('validate password validity', () => {
+    const password = component.signupForm.get('password');
+    expect(password.valid).toBeFalsy();
+    expect(password.errors['required']).toBeTruthy();
+    password.setValue('12345');
+    expect(password.errors['minlength']).toBeTruthy();
+  });
+
+  it('should navigate to dashboard page after click submit', fakeAsync(() => {
+    const email = component.signupForm.get('email');
+    const password = component.signupForm.get('password');
+    email.setValue('test@gmail.com');
+    password.setValue('1234567');
+    component.signupForm.updateValueAndValidity();
+
+    if (component.signupForm.valid) {
+      router.navigate(['/dashboard']);
+    }
+    tick();
+    expect(location.path()).toBe('/dashboard');
   }));
 });

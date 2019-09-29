@@ -7,7 +7,7 @@
             <h2>Signin</h2>
             <mat-form-field fxFlex="100">
                 <input matInput type="email" placeholder="email" formControlName="email">
-                <mat-error *ngIf="signupForm.get('email').hasError('required')">
+                <mat-error name="email_required" *ngIf="signupForm.get('email').hasError('required')">
                     Email is required.
                 </mat-error>
                 <mat-error *ngIf="signupForm.get('email').hasError('email')">
