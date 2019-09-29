@@ -6,7 +6,7 @@
         <form fxLayout="column" [formGroup]="signupForm" validate-signin>
             <h2>Signin</h2>
             <mat-form-field fxFlex="100">
-                <input matInput placeholder="email" formControlName="email">
+                <input matInput type="email" placeholder="email" formControlName="email">
                 <mat-error *ngIf="signupForm.get('email').hasError('required')">
                     Email is required.
                 </mat-error>

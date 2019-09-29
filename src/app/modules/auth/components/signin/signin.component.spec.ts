@@ -20,6 +20,7 @@ const routes: Routes = [
 describe('SigninComponent', () => {
   let component: SigninComponent;
   let fixture: ComponentFixture<SigninComponent>;
+  let nativeElement: HTMLElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -41,9 +42,16 @@ describe('SigninComponent', () => {
     fixture = TestBed.createComponent(SigninComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    nativeElement = fixture.nativeElement;
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should have email input', () => {
+    const emailInput = nativeElement.querySelector('input[type="email"');
+
+    // expect(emailInput).toBeTruthy();
   });
 });
