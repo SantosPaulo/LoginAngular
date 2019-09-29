@@ -15,7 +15,7 @@
                 </mat-error>
             </mat-form-field>
             <mat-form-field fxFlex="100">
-                <input matInput type="password" placeholder="Password" formControlName="password">
+                <input matInput type="password" placeholder="password" formControlName="password">
                 <mat-error *ngIf="signupForm.get('password').hasError('minlength')">
                     Password is invalid. <small>(min 6 chars)</small>
                 </mat-error>
@@ -26,7 +26,7 @@
                 type="button"
                 color="primary"
                 (click)="submit()">
-                signout
+                signin
         </button>
         <p><small><a routerLink="/auth/signup">signup</a></small></p>
     </form>
