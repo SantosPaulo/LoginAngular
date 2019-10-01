@@ -137,4 +137,16 @@ describe('SigninComponent', () => {
     tick();
     expect(location.path()).toBe('/dashboard');
   }));
+
+  it('shouldn\'t submit form if it is valid', () => {
+    const email = component.signupForm.get('email');
+    const password = component.signupForm.get('password');
+    email.setValue('testgmail.com');
+    password.setValue('123');
+    component.signupForm.updateValueAndValidity();
+    button.click();
+    expect(email.valid).toBeFalsy();
+    expect(email.errors['email']).toBeTruthy();
+    expect(password.errors['minlength']).toBeTruthy();
+  });
 });
