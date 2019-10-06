@@ -17,8 +17,16 @@ const routes: Routes = [
 ];
 
 describe('SignupComponent', () => {
+
   let component: SignupComponent;
   let fixture: ComponentFixture<SignupComponent>;
+  let nativeElement: HTMLElement;
+  let pageTitle: HTMLElement;
+  let button: HTMLButtonElement;
+  let nameInput: HTMLInputElement;
+  let emailInput: HTMLInputElement;
+  let passwordInput: HTMLInputElement;
+  let anchor: HTMLElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -40,9 +48,46 @@ describe('SignupComponent', () => {
     fixture = TestBed.createComponent(SignupComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    nativeElement = fixture.nativeElement;
+    pageTitle = nativeElement.querySelector('h2');
+    nameInput = nativeElement.querySelector('input[type="text"');
+    emailInput = nativeElement.querySelector('input[type="email"');
+    passwordInput = nativeElement.querySelector('input[type="password"');
+    button = nativeElement.querySelector('button[type="button"');
+    anchor = nativeElement.querySelector('p small a');
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should have correct page title', () => {
+    expect(pageTitle.innerText).toBe('Signup');
+  });
+
+  it('should have name input', () => {
+    expect(nameInput).toBeTruthy();
+    expect(nameInput.placeholder).toBe('Name');
+  });
+
+  it('should have email input', () => {
+    expect(emailInput).toBeTruthy();
+    expect(emailInput.placeholder).toBe('Email');
+  });
+
+  it('should have password input', () => {
+    expect(passwordInput).toBeTruthy();
+    expect(passwordInput.placeholder).toBe('Password');
+  });
+
+  it('should have submit button', () => {
+    expect(button).toBeTruthy();
+    expect(button.innerText).toBe('signup');
+  });
+
+  it('should have link to signin', () => {
+    expect(anchor).toBeTruthy();
+    expect(anchor.innerText).toBe('signin');
+    expect(anchor.getAttribute('routerLink')).toBe('/auth/signin');
   });
 });

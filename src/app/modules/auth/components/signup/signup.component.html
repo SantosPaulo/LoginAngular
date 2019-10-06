@@ -6,13 +6,13 @@
         <form fxLayout="column" [formGroup]="signupForm" validate-signup>
             <h2>Signup</h2>
             <mat-form-field fxFlex="100">
-                <input matInput placeholder="name" formControlName="name">
+                <input matInput type="text" placeholder="Name" formControlName="name">
                     <mat-error *ngIf="signupForm.get('name').hasError('required')">
                         Name is required.
                     </mat-error>
                 </mat-form-field>
             <mat-form-field fxFlex="100">
-                <input matInput placeholder="email" formControlName="email">
+                <input matInput type="email" placeholder="Email" formControlName="email">
                 <mat-error *ngIf="signupForm.get('email').hasError('required')">
                     Email is required.
                 </mat-error>
@@ -32,7 +32,7 @@
                 type="button"
                 color="primary"
                 (click)="submit()">
-                signout
+                signup
             </button>
             <p><small><a routerLink="/auth/signin">signin</a></small></p>
         </form>
