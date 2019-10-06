@@ -6,7 +6,7 @@ import { environment as env } from '@env/environment';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { User } from '@app/core/models/user';
-import { shareReplay, tap } from 'rxjs/operators';
+import { shareReplay } from 'rxjs/operators';
 import { Jwt } from '@app/core/models/jwt';
 import { MatDialog } from '@angular/material/dialog';
 import { SessionExpiredComponent } from '@app/modules/session-expired/components/session-expired/session-expired.component';
@@ -25,7 +25,7 @@ export class AuthService extends Base {
   constructor(
     private readonly http: HttpClient,
     private readonly router: Router,
-    public readonly dialog: MatDialog
+    private readonly dialog: MatDialog
   ) {
     super();
     this._initTokenChecker();
