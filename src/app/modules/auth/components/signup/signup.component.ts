@@ -50,9 +50,9 @@ export class SignupComponent extends Base {
 
   private _initForm(): void {
     this.signupForm = this.fb.group({
-      name: [],
-      email: [],
-      password: []
+      name: new FormControl('', [ Validators.required, Validators.minLength(3) ]),
+      email: new FormControl('', [ Validators.email, Validators.required ]),
+      password: new FormControl('', [ Validators.required, Validators.minLength(6) ])
     });
   }
 }
